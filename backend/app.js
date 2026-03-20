@@ -103,6 +103,21 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    name: 'EV Charging Station API',
+    version: '1.0.0',
+    message: 'API is running. Use the paths below (not the site root in a browser for the SPA).',
+    paths: {
+      health: '/health',
+      swagger: '/api/docs',
+      auth: '/api/v1/auth',
+      stations: '/api/v1/stations',
+    },
+  });
+});
+
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/stations', stationRoutes);
 
