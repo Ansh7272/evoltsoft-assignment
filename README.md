@@ -69,6 +69,3 @@ DEPLOYMENT.md
 render.yaml
 ```
 
-## License
-
-Unspecified — add one if you’re publishing this publicly.
