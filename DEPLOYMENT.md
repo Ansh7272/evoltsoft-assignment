@@ -50,7 +50,8 @@ If your backend is on Railway: `https://ev-charging-backend.up.railway.app/api/v
    MONGO_URI=your_mongodb_connection
    JWT_SECRET=generate_a_strong_secret
    JWT_REFRESH_SECRET=generate_another_secret
-   CORS_ORIGIN=https://your-frontend.vercel.app
+   CORS_ORIGIN=https://frontend-two-neon-24.vercel.app
+   # Optional: keep local dev too → http://localhost:5173,https://frontend-two-neon-24.vercel.app
    ```
 
 2. Push backend code to separate GitHub repo (if needed)
@@ -69,7 +70,15 @@ If your backend is on Railway: `https://ev-charging-backend.up.railway.app/api/v
 - [ ] `MONGO_URI` = Your MongoDB connection string
 - [ ] `JWT_SECRET` = Strong random secret (min 32 chars)
 - [ ] `JWT_REFRESH_SECRET` = Strong random secret (min 32 chars)
-- [ ] `CORS_ORIGIN` = Your Vercel frontend URL
+- [ ] `CORS_ORIGIN` = Your Vercel frontend URL (or comma-separated list)
+
+### Render (existing Web Service)
+
+1. Open [Render Dashboard](https://dashboard.render.com) → your API service → **Environment**.
+2. Set **`CORS_ORIGIN`** to `https://frontend-two-neon-24.vercel.app` (or add `http://localhost:5173,` before it for local + prod).
+3. **Save** and **Manual Deploy** so the new value is picked up.
+
+`render.yaml` in this repo documents the same defaults for new Blueprint deploys; secrets (`MONGO_URI`, `JWT_*`) stay dashboard-only (`sync: false`).
 
 ---
 
@@ -125,8 +134,9 @@ NODE_ENV=production npm run dev
 
 ## Files Created for Deployment
 
-- ✅ `vercel.json` - Vercel config
-- ✅ `.vercelignore` - Files to ignore
+- ✅ `frontend/vercel.json` - Vercel config (SPA + `VITE_API_BASE_URL` build env)
+- ✅ `render.yaml` - Render Blueprint defaults (see Render section above)
+- ✅ `.vercelignore` - Files to ignore (if present)
 - ✅ `frontend/.env.production` - Frontend production env
 - ✅ `backend/.env` - Updated with instructions
 - ✅ `.env.example` - Documentation

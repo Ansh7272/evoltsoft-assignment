@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "VITE_API_BASE_URL": "https://evoltsoft-assignment-ckc0.onrender.com/api/v1"
+    }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
